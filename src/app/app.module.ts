@@ -6,11 +6,13 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import {appRoutingProviders, routing} from './app.routing';
+import { ArtistListComponent } from './components/artist-list/artist-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserEditComponent,
+    ArtistListComponent,
   ],
   imports: [
     BrowserModule,
