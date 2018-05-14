@@ -27,8 +27,8 @@
           Email is required
         </span>
     </p>
-    <div class="imgafe_for_edit" *ngIf="user.image && user.image !== 'null'">
-      <img src=""/>
+    <div class="imafe_for_edit" *ngIf="user.image && user.image != 'null'">
+      <img src="{{url + 'get-image-user/' + user.image}}" style="width: 50px;"/>
     </div>
     <p>
       <label>Up your photo: </label>

@@ -42,27 +42,32 @@ export class UserEditComponent implements OnInit {
           localStorage.setItem('identity', JSON.stringify(this.user));
           document.getElementById('identity_name').innerHTML = this.user.name;
 
-          /*if (!this.filesToUpload) {
-            this.makeFileRequest(this.url + 'upload-image-user' + this.user._id, [], this.filesToUpload ).then(
+          if (!this.filesToUpload) {
+            // TO DO redirect
+          }else {
+            this.makeFileRequest(this.url + 'upload-image-user/' + this.user._id, [], this.filesToUpload ).then(
               (result: any) => {
                 this.user.image = result.image;
                 localStorage.setItem('identity', JSON.stringify(this.user));
                 console.log(this.user);
+                const imagePath = this.url + 'get-image-user/' + this.user.image;
+                document.getElementById('image-logged').setAttribute('src', imagePath);
               });
-          }*/
+          }
 
           this.alertMessage = 'user updated!!';
         }
     }, error => {
-        const errorMessage = <any>error;
-        if (errorMessage) {
+        const errorMessage = <any> error;
+        if (errorMessage != null) {
           const body = JSON.parse(error.body);
           this.alertMessage = body.message;
+          console.log(error);
         }
       }
     );
   }
-/*
+
   fileChangeEvent(fileInput: any) {
     this.filesToUpload = <Array<File>> fileInput.target.files;
     console.log(this.filesToUpload);
@@ -91,5 +96,5 @@ export class UserEditComponent implements OnInit {
       xhr.setRequestHeader('Authorization', token);
       xhr.send(formData);
     });
-  }*/
+  }
 }
