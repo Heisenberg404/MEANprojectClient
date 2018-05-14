@@ -1,13 +1,35 @@
-<div *ngIf="identity" class="navigation col-lg-1">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
+<div *ngIf="identity" class="navigation col-lg-12">
+  <h1>{{title}}!</h1>
+    <nav id="navigation">
+      <a href="#">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        Buscar
+      </a>
+      <a href="#">
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        Artists
+      </a>
+      <a href="#">
+        <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+        Albums
+      </a>
+    </nav>
+    <nav id="user_logged">
+      <span id="identity_name">{{identity.name}}</span>
+      <span class="btn btn-warning" (click)="logout()" >Log out</span>
+      <a [routerLink]="['/my-data']">
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        My data
+      </a>
+    </nav>
+
 </div>
 <div class="clearfix"></div>
 
 
-<div *ngIf="identity" class="central col-lg-1">
+<div *ngIf="identity" class="central col-lg-12">
   <p>You're logged</p>
+  <router-outlet></router-outlet>
 </div>
 
 <div class="col-lg-12" *ngIf="!identity">
@@ -35,22 +57,39 @@
   </div>
   <div class="col-lg-6">
     <h1>Register</h1>
-    <form class="col-lg-10">
+    <div *ngIf="alertRegister">
+      <div class="alert alert-info">
+        {{alertRegister}}
+      </div>
+    </div>
+    <form #registerForm="ngForm" class="col-lg-10" (submit)="onSubmitRegister()">
       <p>
         <label>name:</label>
-        <input type="text" class="form-control" required />
+        <input #name="ngModel" name="name" [(ngModel)]="userRegister.name" type="text" class="form-control" required />
+        <span *ngIf="!name.valid && name.touched">
+          name is required
+        </span>
       </p>
       <p>
         <label>last name:</label>
-        <input type="text" class="form-control" required />
+        <input #surname="ngModel" name="surname" [(ngModel)]="userRegister.surname" type="text" class="form-control" required />
+        <span *ngIf="!surname.valid && surname.touched">
+          last name is required
+        </span>
       </p>
       <p>
         <label>email:</label>
-        <input type="text" class="form-control" required />
+        <input type="text" class="form-control" required #email="ngModel" [(ngModel)] = "userRegister.email" name="email"/>
+        <span *ngIf="!email.valid && email.touched">
+          Email is required
+        </span>
       </p>
       <p>
         <label>password:</label>
-        <input type="password" class="form-control" required />
+        <input type="password" class="form-control" required name="password" #password="ngModel" [(ngModel)]="userRegister.password" />
+        <span *ngIf="!password.valid && surname.password">
+          password is required
+        </span>
       </p>
       <input type="submit" value="Enroll" class="btn btn-primary">
     </form>
