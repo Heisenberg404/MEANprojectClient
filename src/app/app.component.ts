@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {User} from './models/user';
 import {UserService} from './services/user.service';
 import {identity} from 'rxjs/util/identity';
-import {GLOBAL} from "./services/global";
+import {GLOBAL} from './services/global';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit {
   public alertRegister;
   public url: string;
 
-  constructor(private userService: UserService) {
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {
     this.user = new User('', '', '', '', '', 'ROLE_USER', '');
     this.userRegister = new User('', '', '', '', '', 'ROLE_USER', '');
     this.url = GLOBAL.url;
@@ -92,6 +93,7 @@ export class AppComponent implements OnInit {
     localStorage.clear();
     this.identity = null;
     this.token = null;
+    this.router.navigate(['/']);
   }
 
   onSubmitRegister() {

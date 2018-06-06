@@ -1,3 +1,7 @@
-<p>
-  artist-list works!
-</p>
+<div class="head-page">
+  <h1>{{title}}</h1>
+  <a *ngIf="identity && identity.role == 'ROLE_ADMIN'" class="btn btn-default" [routerLink]="['/create-artist']">
+    Add artist
+  </a>
+</div>
+
