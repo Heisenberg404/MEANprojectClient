@@ -44,7 +44,7 @@ export class ArtistAddComponent implements OnInit {
         }else {
           this.alertMessage = 'Artist saved';
           this.artist = response.artist;
-          // this.router.navigate([]);
+          this.router.navigate(['/edit-artist', response.artist._id] );
         }
       },
       error => {

@@ -74,6 +74,9 @@ html, body {
   cursor: pointer;
 }
 
+.artist_image_for_edit img{
+  width: 150px;
+}
 
 
 

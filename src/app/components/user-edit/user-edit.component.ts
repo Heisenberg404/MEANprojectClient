@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import {GLOBAL} from '../../services/global';
+import {UploadService} from "../../services/upload.service";
 
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.css'],
-  providers: [UserService]
+  providers: [UserService, UploadService]
 })
 export class UserEditComponent implements OnInit {
 
@@ -19,7 +20,7 @@ export class UserEditComponent implements OnInit {
   public filesToUpload: Array<File>;
   public url: string;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private  uploadService: UploadService) {
     this.title = 'Update my data';
     this.identity = this.userService.getIdentity();
     this.token = this.userService.getToken();

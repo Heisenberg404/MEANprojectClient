@@ -1,4 +1,4 @@
-<div class="col-lg-6">
+<div class="col-lg-6" *ngIf="identity && identity.role === 'ROLE_ADMIN'">
   <h1>{{title}}</h1>
   <div *ngIf="alertMessage">
       <div class="alert alert-info">
@@ -21,16 +21,18 @@
         </span>
       </p>
       <div *ngIf="is_edit">
-        <div class="image_for_edit" *ngIf="artist.image != null">
+        <div class="artist_image_for_edit" *ngIf="artist.image && artist.image !== 'null'">
           <img src="{{url + 'get-image-artist/' + artist.image}}">
         </div>
+        <p>
+          <label>Upload image for artist</label>
+          <input type="file" placeholder="Upload" (change)="fileChangeEvent($event)">
+        </p>
       </div>
-
-      <p>
-        <label>Upload image for artist</label>
-        <input type="file" placeholder="Upload" (change)="fileChangeEvent($event)">
-      </p>
-
       <input class="btn btn-success" type="submit" value="{{title}}" [disabled]="!formArtist.form.valid" />
   </form>
+</div>
+<div class="col-lg-6" *ngIf="!identity || identity.role !== 'ROLE_ADMIN'">
+  <h1>Error</h1>
+  <p>Access denied!!!</p>
 </div>
