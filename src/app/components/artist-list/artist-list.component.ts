@@ -21,6 +21,7 @@ export class ArtistListComponent implements OnInit {
   public nextPage;
   public prevPage;
   public artists;
+  public confirm;
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService,
               private artistService: ArtistService) {
@@ -68,4 +69,31 @@ export class ArtistListComponent implements OnInit {
       );
     });
   }
+
+  onDeleteConfirm(id) {
+    this.confirm = id;
+  }
+  onCancelArtist() {
+    this.confirm = null;
+  }
+
+  onDeleteArtist(id) {
+    this.artistService.deleteArtist(this.token, id).subscribe(
+      response => {
+        if (!response.artist) {
+          alert('Server Error');
+        }
+        this.getArtists();
+      },
+      error => {
+        const errorMessage = <any>error;
+        if (errorMessage != null) {
+          const body = JSON.parse(error._body);
+          console.log(error);
+        }
+      }
+    );
+  }
+
+
 }
