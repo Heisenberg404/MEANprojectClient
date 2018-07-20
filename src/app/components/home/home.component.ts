@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  total: number;
+
   constructor() { }
 
   ngOnInit() {
+    this.total = 30000000;
   }
 
 }

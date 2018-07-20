@@ -12,6 +12,8 @@ import { ArtistAddComponent } from './components/artist-add/artist-add.component
 import {ArtistEditComponent} from './components/artist-add/artist-edit.component';
 import { ArtistDetailsComponent } from './components/artist-details/artist-details.component';
 import { AlbumAddComponent } from './components/album-add/album-add.component';
+import { ReplacePipePipe } from './pipes/replace-pipe.pipe';
+import {AlbumEditComponent} from './components/album-add/album-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AlbumAddComponent } from './components/album-add/album-add.component';
     ArtistAddComponent,
     ArtistEditComponent,
     ArtistDetailsComponent,
-    AlbumAddComponent
+    AlbumAddComponent,
+    ReplacePipePipe,
+    AlbumEditComponent
   ],
   imports: [
     BrowserModule,

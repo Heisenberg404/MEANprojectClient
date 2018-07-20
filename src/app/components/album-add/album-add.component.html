@@ -1,3 +1,49 @@
-<p>
-  album-add works!
-</p>
+<div class="col-lg-6">
+  <h1>{{titulo}}</h1>
+
+  <div *ngIf="alertMessage">
+    <div class="alert alert-info">
+      {{alertMessage}}
+    </div>
+  </div>
+
+  <form #formAlbum="ngForm" (ngSubmit)="onSubmit()">
+    <p>
+      <label>Title: </label>
+      <input type="text" [(ngModel)]="album.title" #title="ngModel" name="title"  required class="form-control">
+      <span *ngIf="!title.valid && title.touched">
+        Title is required
+      </span>
+    </p>
+    <p>
+      <label>Desc: </label>
+      <textarea [(ngModel)]="album.description" #description="ngModel" name="description"  required class="form-control"></textarea>
+      <span *ngIf="!description.valid && description.touched">
+        Desc is required
+      </span>
+    </p>
+    <p>
+      <label>Year: </label>
+      <input type="text" [(ngModel)]="album.year"  #year="ngModel" name="year" required class="form-control">
+      <span *ngIf="!year.valid && year.touched">
+        Year is required
+      </span>
+    </p>
+
+    <div *ngIf="isEdit">
+      <div class="album_image_for_edit" *ngIf="album.image && album.image != 'null'">
+        <img src="{{url + 'get-image-album/' + album.image}}"/>
+      </div>
+      <p>
+        <label>Upload album image</label>
+        <input type="file" placeholder="Upload image ..." (change)="fileChangeEvent($event)">
+      </p>
+    </div>
+
+    <input type="submit" value="{{titulo}}" [disabled]="!formAlbum.form.valid" class="btn btn-success" />
+
+  </form>
+
+</div>
+
+
