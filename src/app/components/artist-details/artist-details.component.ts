@@ -69,4 +69,30 @@ export class ArtistDetailsComponent implements OnInit {
       );
     });
   }
+
+  public confirm;
+  onDeleteConfirm(id) {
+    this.confirm = id;
+  }
+
+  onCancelAlbum() {
+    this.confirm = null;
+  }
+
+  onDeleteAlbum(id) {
+    this.albumService.deleteAlbum(this.token, id).subscribe(
+      res => {
+        if (!res.album) {
+          alert('Server Error');
+        }
+        this.getArtist();
+      }, error => {
+        const errorMessage = <any>error;
+        if (errorMessage != null) {
+          const body = JSON.parse(error._body);
+          console.log(error);
+        }
+      }
+    );
+  }
 }

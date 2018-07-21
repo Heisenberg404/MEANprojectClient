@@ -20,7 +20,7 @@
         </div>
         <div class="album-name">
           <p>
-            <a href="#">
+            <a [routerLink]="['/album', album._id]">
               {{album.title}}
             </a>
           </p>
@@ -34,7 +34,7 @@
             <a (click)="onDeleteConfirm(album._id)" class="btn btn-sm btn-danger">Delete</a>
           </div>
         </div>
-        <div class="seguro" *ngIf="confirm == album._id">
+        <div class="seguro seguro-album" *ngIf="confirm == album._id">
           <a (click)="onDeleteAlbum(album._id)" class="btn btn-sm btn-danger">
             Delete
           </a>

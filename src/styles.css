@@ -31,6 +31,11 @@ html, body {
   height: 40px;
 }
 
+.seguro-album {
+  margin-top: -41px;
+  margin-left: 10px;
+}
+
 .navigation {
   text-align: center;
   color: white;
@@ -139,7 +144,8 @@ html, body {
   color: white;
 }
 
-#artist-head-card .image {
+#artist-head-card .image,
+#album-head-card .image {
   width: 150px;
   height: 150px;
   overflow: hidden;
@@ -147,7 +153,8 @@ html, body {
   margin-right: 30px;
 }
 
-#artist-head-card .image img {
+#artist-head-card .image img,
+#album-head-card .image img {
   height: 150px;
 }
 
