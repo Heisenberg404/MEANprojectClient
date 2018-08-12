@@ -16,6 +16,8 @@ import { ReplacePipePipe } from './pipes/replace-pipe.pipe';
 import {AlbumEditComponent} from './components/album-add/album-edit.component';
 import { AlbumDetailComponent } from './components/album-detail/album-detail.component';
 import { SongAddComponent } from './components/song-add/song-add.component';
+import {SongEditComponent} from './components/song-add/song-edit.component';
+import { PlayerComponent } from './components/player/player.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { SongAddComponent } from './components/song-add/song-add.component';
     ReplacePipePipe,
     AlbumEditComponent,
     AlbumDetailComponent,
-    SongAddComponent
+    SongAddComponent,
+    SongEditComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,

@@ -6,10 +6,42 @@
     <div class="data">
       <h1>{{album.title}}</h1>
       <p>{{album.year}}</p>
+      <p><strong>{{album.artist.name}}</strong></p>
       <p>{{album.description}}</p>
       <a [routerLink]="['/add-song', album._id]" class="btn btn-default" *ngIf="identity.role == 'ROLE_ADMIN'">
         Add song
       </a>
     </div>
+  </div>
+  <div class="clearfix"></div>
+  <div id="gallery-songa" *ngIf="songs">
+    <ul id="songs-list">
+      <li *ngFor="let song of songs" class="song-item">
+        <div class="title">
+          <a class="btn btn-success" (click)="startPlayer(song)">
+            <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+          </a>
+          {{song.number + '.' + song.name + ' - ' + song.duration}}
+          <div *ngIf="identity" class="buttons">
+            <a [routerLink]="['/edit-song', song._id]" class="btn btn-warning">
+              Edit
+            </a>
+            <a (click)="onDeleteConfirm(song._id)" class="btn btn-danger">
+              Remove
+            </a>
+
+          </div>
+          <div class="seguro seguro-song" *ngIf="confirm == song._id">
+            <a (click)="onDeleteSong(song._id)" class="btn btn-danger">
+              Confirm
+            </a>
+            <a (click)="onCancelSong()" class="btn btn-primary">
+              Cancel
+            </a>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>
